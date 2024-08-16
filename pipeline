@@ -5,7 +5,7 @@ pipeline {
         GITHUB_REPO = "git@github.com:rustamrustamv/calculator.git"
         LOCAL_REPO_PATH = "/home/ubuntu/calculator"
         AWS_VM_IP = "34.206.246.245"
-        AWS_CREDENTIALS_ID = "your-credentials-id"  // Replace with your actual credentials ID
+        AWS_CREDENTIALS_ID = "AWS"  // Replace with your actual credentials ID
     }
 
     stages {
