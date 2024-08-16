@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        GITHUB_REPO = 'https://github.com/your-username/your-repo.git'
-        LOCAL_REPO_PATH = '/path/to/local/repo/on/aws/vm'
+        GITHUB_REPO = git@github.com:rustamrustamv/calculator.git
+        LOCAL_REPO_PATH = /home/ubuntu/calculator
     }
 
     stages {
@@ -19,10 +19,10 @@ pipeline {
         stage('Update Local Repository') {
             steps {
                 // Use SSH agent to securely access the AWS VM
-                sshagent(credentials: ['your-ssh-key-id']) {
+                sshagent(credentials: [AWS]) {
                     // Update the local repository on AWS VM
                     sh """
-                        ssh ubuntu@your-aws-vm-ip '
+                        ssh ubuntu@34.206.246.245 '
                         cd ${LOCAL_REPO_PATH}
                         git fetch origin
                         git reset --hard origin/main
