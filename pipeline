@@ -43,7 +43,7 @@ pipeline {
                     else
                         echo "No tests directory found. Skipping tests."
                     fi
-                ...
+                '''  // Close the multi-line string correctly here
             }
         }
 
