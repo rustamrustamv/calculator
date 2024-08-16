@@ -9,7 +9,7 @@ class Calculator:
         pass
 
     def multiply(self, a, b):
-        pass
+        return a * b
 
 def main():
     calc = Calculator()
