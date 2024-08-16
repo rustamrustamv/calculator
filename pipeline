@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GITHUB_REPO = git@github.com:rustamrustamv/calculator.git
+        GITHUB_REPO = "git@github.com:rustamrustamv/calculator.git"
         LOCAL_REPO_PATH = /home/ubuntu/calculator
     }
 
