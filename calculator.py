@@ -6,7 +6,9 @@ class Calculator:
         pass
 
     def divide(self, a, b):
-        pass
+        if b == 0:
+            return "Error: Division by zero"
+        return a / b
 
     def multiply(self, a, b):
         pass
