@@ -11,7 +11,7 @@ class Calculator:
         return a / b
 
     def multiply(self, a, b):
-        pass
+        return a * b
 
 def main():
     calc = Calculator()
