@@ -4,25 +4,23 @@ pipeline {
     environment {
         GITHUB_REPO = "git@github.com:rustamrustamv/calculator.git"
         LOCAL_REPO_PATH = "/home/ubuntu/calculator"
+        AWS_VM_IP = "34.206.246.245"
+        AWS_CREDENTIALS_ID = "your-credentials-id"  // Replace with your actual credentials ID
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Clean workspace before checking out code
                 cleanWs()
-                // Checkout code from GitHub
                 git branch: 'main', url: "${GITHUB_REPO}"
             }
         }
 
         stage('Update Local Repository') {
             steps {
-                // Use SSH agent to securely access the AWS VM
-                sshagent(credentials: [AWS]) {
-                    // Update the local repository on AWS VM
+                sshagent(credentials: [AWS_CREDENTIALS_ID]) {
                     sh """
-                        ssh ubuntu@34.206.246.245 '
+                        ssh ubuntu@${AWS_VM_IP} '
                         cd ${LOCAL_REPO_PATH}
                         git fetch origin
                         git reset --hard origin/main
@@ -34,14 +32,12 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Run your tests here
                 sh 'python -m unittest discover tests'
             }
         }
 
         stage('Deploy') {
             steps {
-                // Add any deployment steps here if needed
                 echo 'Deployment completed'
             }
         }
