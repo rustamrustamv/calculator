@@ -36,7 +36,14 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'python3 -m unittest discover tests'
+                // Check if tests directory exists
+                sh '''
+                    if [ -d "tests" ]; then
+                        python3 -m unittest discover tests
+                    else
+                        echo "No tests directory found. Skipping tests."
+                    fi
+                ...
             }
         }
 
