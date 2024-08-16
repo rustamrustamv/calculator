@@ -52,7 +52,7 @@ pipeline {
             echo 'Pipeline succeeded! Local repository updated.'
         }
         failure {
-            echo 'Pipeline failed. Please check the logs for details.'
+            echo 'Pipeline failed. Please check the logs for details'
         }
     }
 }
