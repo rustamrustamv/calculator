@@ -5,7 +5,7 @@ pipeline {
         GITHUB_REPO = "git@github.com:rustamrustamv/calculator.git"
         LOCAL_REPO_PATH = "/home/ubuntu/calculator"
         AWS_VM_IP = "34.206.246.245"
-        AWS_CREDENTIALS_ID = "AWS"  // Replace with your actual credentials ID
+        AWS_CREDENTIALS_ID = "your-credentials-id"  // Replace with your actual credentials ID
     }
 
     stages {
@@ -20,6 +20,10 @@ pipeline {
             steps {
                 sshagent(credentials: [AWS_CREDENTIALS_ID]) {
                     sh """
+                        # Add the AWS VM host key to known_hosts
+                        ssh-keyscan -H ${AWS_VM_IP} >> ~/.ssh/known_hosts
+
+                        # Update the local repository on AWS VM
                         ssh ubuntu@${AWS_VM_IP} '
                         cd ${LOCAL_REPO_PATH}
                         git fetch origin
